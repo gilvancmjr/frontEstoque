@@ -29,7 +29,8 @@
 </template>
 
 <script>
-import dados from "./../data/data.json";
+
+import dados from "../../../src/data/data.json"
 import { mapState, mapActions } from "vuex";
 export default {
   data() {
@@ -38,13 +39,13 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["getProducts"]),
+    ...mapActions( 'products',['getProducts']),
     dinheiro(valor) {
       return "R$ " + valor.toFixed(2);
     },
   },
   computed: {
-    ...mapState(["products"]),
+    ...mapState(['products']),
   },
 
   created() {
