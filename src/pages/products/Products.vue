@@ -1,7 +1,12 @@
 <template>
   <div class="principal">
     <div class="principal">
-      <h1>Products</h1>
+      <div class="topo">
+        <h1>Products</h1>
+        <button class="btn btn-success">
+          <router-link class="link" to="/products-register">Add Produtos</router-link>
+        </button>
+      </div>
 
       <div>
         <ul>
@@ -29,8 +34,7 @@
 </template>
 
 <script>
-
-import dados from "../../../src/data/data.json"
+import dados from "../../../src/data/data.json";
 import { mapState, mapActions } from "vuex";
 export default {
   data() {
@@ -39,13 +43,13 @@ export default {
     };
   },
   methods: {
-    ...mapActions( 'products',['getProducts']),
+    ...mapActions("products", ["getProducts"]),
     dinheiro(valor) {
       return "R$ " + valor.toFixed(2);
     },
   },
   computed: {
-    ...mapState(['products']),
+    ...mapState(["products"]),
   },
 
   created() {
@@ -59,6 +63,19 @@ export default {
   padding: 1%;
   padding-top: 0.1%;
   margin-top: -1%;
+  .topo {
+    display: flex;
+    justify-content: space-around;
+    padding: 2.1%;
+    .btn{
+      max-height: 50px;
+      .link{
+        text-decoration: none;
+        color: white;
+
+      }
+    }
+  }
   ul {
     list-style: none;
     li {

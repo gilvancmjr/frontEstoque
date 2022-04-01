@@ -2,51 +2,53 @@
   <div>
     <div class="categories">
       <h1>Categorias</h1>
-      <div class="list" v-for="category in categories" :key="category.id">
+      <div
+        class="list"
+        v-for="category in categories.categories"
+        :key="category.id"
+      >
         <div class="dados">{{ category.id }}</div>
         <div class="dados">{{ category.name }}</div>
       </div>
     </div>
-    <div class="vuex">
+    <!-- <div class="vuex">
       {{ count }}
       <button v-on:click="increments">+</button>
-    </div>
+    </div> -->
     <hr />
-    <div class="produtos">
+    <!-- <div class="produtos">
       {{ products }}
       <input v-model="produtos" type="text" />
       <button v-on:click="addProducts(produtos)" class="btn btn-primary mt-4">+</button>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import { mapState, mapMutations, mapActions } from "vuex";
+//import axios from "axios";
+import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
-      categories: {},
       produtos: "",
     };
   },
   methods: {
-    getCategories() {
-      axios.get("http://localhost:8081/categories").then((resp) => {
-        this.categories = resp.data;
-      });
-    },
-    ...mapMutations(["increments"]),
-    ...mapActions(["addProducts"]),
+    // getCategories() {
+    //   axios.get("http://localhost:8081/categories").then((resp) => {
+    //     this.categories = resp.data;
+    //   });
+    // },
+    ...mapActions(["getCategories"]),
   },
   created() {
     this.getCategories();
   },
   computed: {
-    //    contador() {
-    //      return this.$store.state.count;
-    //    },
-    ...mapState(["count", "products"]),
+    contador() {
+      return this.$store.state.count;
+    },
+    ...mapState(["categories"]),
   },
 };
 </script>
